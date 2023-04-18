@@ -653,10 +653,6 @@ video {
   display: table-cell;
 }
 
-.table-header-group {
-  display: table-header-group;
-}
-
 .grid {
   display: grid;
 }
@@ -707,6 +703,10 @@ video {
 
 .grow {
   flex-grow: 1;
+}
+
+.border-separate {
+  border-collapse: separate;
 }
 
 .rotate-180 {
@@ -852,6 +852,10 @@ video {
   padding-top: 1.5rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -968,17 +972,11 @@ video {
   --tw-ring-color: rgb(127 29 29 / 0.5);
 }
 
-@media (min-width: 640px) {
-  .sm\:table-cell {
+@media (min-width: 768px) {
+  .md\:table-cell {
     display: table-cell;
   }
 
-  .sm\:table-header-group {
-    display: table-header-group;
-  }
-}
-
-@media (min-width: 768px) {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
