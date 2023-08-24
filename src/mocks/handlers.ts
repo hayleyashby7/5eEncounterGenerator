@@ -38,6 +38,14 @@ export const handlers = [
             }),
         );
 
+        if (parseFloat(challenge_rating) < 0) return res(
+            ctx.status(400),
+            ctx.json({
+                message: 'Invalid challenge rating',
+            }),
+    
+        )
+
         else return res(
             ctx.status(200),
             ctx.json({

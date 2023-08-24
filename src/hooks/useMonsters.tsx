@@ -11,12 +11,15 @@ export const useMonsters = async (challengeRating?: number | null) => {
             headers: { 'x-api-key': API_KEY },
             params: params,
         },
-    );
-    if (response.status === 200) {
-        return response.data;
-    } else {
+    ) .then((response) => {
+        return response;
+    })
+    .catch((error) => {
+        console.error(error);
         return null;
-    }
+    });
+
+return response ? response.data : null;
 };
 
 export default useMonsters;

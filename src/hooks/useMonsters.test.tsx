@@ -38,4 +38,16 @@ describe('useMonsters', () => {
         // Assert
         expect(response).toEqual(expected);
     });
+
+    test('when passed an invalid challenge rating it returns null', async () => {
+        // Arrange
+        const challenge_rating = -24;
+        const expected = null;
+    
+        // Act
+        const response = await useMonsters(challenge_rating);
+    
+        // Assert
+        expect(response).toEqual(expected);
+    });
 });
