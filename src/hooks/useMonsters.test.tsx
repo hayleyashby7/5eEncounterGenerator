@@ -1,5 +1,5 @@
 import useMonsters from './useMonsters';
-import { mockChallengeRatingList } from '../mocks/mockMonsterData';
+import { mockChallengeRatingList, mockFullList } from '../mocks/mockMonsterData';
 
 describe('useMonsters', () => {
     test('when passed a challenge rating it returns a list of monsters', async () => {
@@ -26,5 +26,16 @@ describe('useMonsters', () => {
             expect(monster.challenge_rating).toEqual(challenge_rating);
         });
         
+    });
+
+    test('when not passed a challenge rating it returns a list of all monsters', async () => {
+        // Arrange
+        const expected = { monsters: mockFullList };
+    
+        // Act
+        const response = await useMonsters();
+    
+        // Assert
+        expect(response).toEqual(expected);
     });
 });
