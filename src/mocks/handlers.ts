@@ -1,9 +1,9 @@
 import { rest } from 'msw';
-import { mockChallengeRatingList, mockFullList } from './mockMonsterData';
+import { mockEncounterResponse } from '../mocks/mockMonsterData';
 
 export const handlers = [
     // Get challenge rating from form data
-    rest.post(`https://ddeg-api.cyclic.cloud/api/challenge_rating`, async (req, res, ctx) => {
+    rest.post(`https://ddeg-api.cyclic.cloud/api/encounter`, async (req, res, ctx) => {
         const testData = {
             characters: 3,
             level: 1,
@@ -21,38 +21,9 @@ export const handlers = [
 
         return res(
             ctx.status(200),
-            ctx.json({
-                challenge_rating: 1,
-            }),
-        );
-    }),
-
-    // Get monsters from challenge rating or all monsters if no challenge rating
-    rest.get(`https://ddeg-api.cyclic.cloud/api/monsters`, async (req, res, ctx) => {
-        const challenge_rating = req.url.searchParams.get('challenge_rating');
-   
-        if (!challenge_rating) return res(
-            ctx.status(200),
-            ctx.json({
-                monsters: mockFullList,
-            }),
-        );
-
-        if (parseFloat(challenge_rating) < 0) return res(
-            ctx.status(400),
-            ctx.json({
-                message: 'Invalid challenge rating',
-            }),
-    
-        )
-
-        else return res(
-            ctx.status(200),
-            ctx.json({
-                monsters: mockChallengeRatingList
-            }),
-        );
-    }),
+            ctx.json(mockEncounterResponse),
+           );
+    }),   
 ];
 
 export default handlers;

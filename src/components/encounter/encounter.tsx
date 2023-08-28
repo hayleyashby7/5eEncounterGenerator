@@ -1,27 +1,28 @@
+import { useEncounter } from '../../hooks/useEncounter';
+import { GeneratedEncounter } from '../../types/encounter.types';
 import EncounterForm, { EncounterFormData } from '../encounter_form/encounter_form';
 import EncounterSuggestions from '../encounter_suggestions/encounter_suggestions';
 import { useState } from 'react';
-import { useChallengeRating } from '../../hooks/useChallengeRating';
 
 export const Encounter: React.FC = () => {
     const [encounterError, setEncounterError] = useState<string | null>(null);
-    const [challengeRating, setChallengeRating] = useState<number | null>(null);
+    const [encounter, setEncounter] = useState<GeneratedEncounter | null>(null);
 
-    const getSuggestedMonters = async (data: EncounterFormData) => {
+    const getEncounter = async (data: EncounterFormData) => {
         
-        setChallengeRating(await useChallengeRating(data));
+        setEncounter(await useEncounter(data));
 
-        if (challengeRating === null) {
-            setEncounterError('Unable to determine challenge rating.');
+        if (encounter?.monsters === null) {
+            setEncounterError('Not enough data to generate encounter.');
             return;
         }
     };
 
     return (
         <>
-            <EncounterForm onSubmission={getSuggestedMonters} />
+            <EncounterForm onSubmission={getEncounter} />
             {encounterError && <p className='text-red-950'>{encounterError}</p>}
-            {challengeRating && <EncounterSuggestions challengeRating={challengeRating} />}
+            {encounter && <EncounterSuggestions encounter={encounter} />}
         </>
     );
 };
