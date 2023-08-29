@@ -1,15 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { Path, UseFormRegister, SubmitHandler } from 'react-hook-form';
-import { Difficulty } from '../../types/difficulty.types';
+import { EncounterFormData } from '../../types/encounter.types';
 import Input from './input';
 import Select from './difficulty';
 import Button from './button';
-
-export interface EncounterFormData {
-    characters: number;
-    level: number;
-    difficulty: Difficulty;
-}
 
 export interface DefaultInputProps {
     name: Path<EncounterFormData>;

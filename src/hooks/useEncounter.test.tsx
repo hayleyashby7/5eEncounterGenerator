@@ -1,6 +1,6 @@
 import useEncounter from './useEncounter';
-import { EncounterFormData } from '../components/encounter_form/encounter_form';
-import { mockEncounterResponse} from '../mocks/mockMonsterData';
+import { EncounterFormData } from '../types/encounter.types';
+import { mockEncounterResponse} from '../mocks/mockData';
 describe('useEncounter', () => {
     describe('when passed valid form data', () => {
         const data: EncounterFormData = {
@@ -17,7 +17,7 @@ describe('useEncounter', () => {
             const response = await useEncounter(data);
 
             // Assert
-            expect(response.challengeRating).toEqual(expected);
+            expect(response?.challengeRating).toEqual(expected);
         });
 
         test('returns monsters for the encounter', async () => {
@@ -28,22 +28,44 @@ describe('useEncounter', () => {
             const response = await useEncounter(data);
 
             // Assert
-            expect(response.monsters).toEqual(expected);
+            expect(response?.monsters).toEqual(expected);
+        });
+
+        test('returns null if no monsters are returned', async () => {
+            // Arrange
+            const expected = null;
+            const blankData: EncounterFormData = {
+                characters: 0,
+                level: 0,
+                difficulty: 'Easy',
+            };
+
+            // Act
+            const response = await useEncounter(blankData);
+
+            // Assert
+            expect(response).toEqual(expected);
         });
     
     });
 
     describe('when passed invalid form data', () => {
-        test('throws an error when the response is not 200', async () => {
+        test('throws an error with server message when the response is not 200', async () => {
+            // Arrange
+            const expected = null;
             const data: EncounterFormData = {
                 characters: 3,
                 level: -50,
                 difficulty: 'Easy',
             };
+            const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            const response = useEncounter(data);
+            // Act
+            const response = await useEncounter(data);
 
-            expect(response).rejects.toThrow('Request failed with status code 400');
+            // Assert
+            expect(response).toEqual(expected);
+            expect(errorSpy).toHaveBeenCalledWith('No encounter generated');
         });
     });
 });

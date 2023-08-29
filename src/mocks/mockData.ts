@@ -194,3 +194,8 @@ export const mockEncounterResponse = {
     challengeRating: 1,
     monsters: mockMonsters,
 };
+
+export const mockEncounterResponseNoMonsters = {
+    challengeRating: null,
+    monsters: [],
+};

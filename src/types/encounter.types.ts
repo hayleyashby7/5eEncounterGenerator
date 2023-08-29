@@ -1,3 +1,10 @@
+import { Difficulty } from './difficulty.types';
+
+export interface EncounterFormData {
+    characters: number;
+    level: number;
+    difficulty: Difficulty;
+}
 export interface GeneratedEncounter {
     challengeRating: string | null;
     monsters: Monster[];
