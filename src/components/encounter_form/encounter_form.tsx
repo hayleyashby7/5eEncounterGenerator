@@ -27,7 +27,7 @@ export const EncounterForm: React.FC<EncounterFormProps> = ({ onSubmission }) =>
     const onSubmit: SubmitHandler<EncounterFormData> = async (data) => onSubmission(data);
 
     return (
-        <form
+        <form aria-labelledby='encounter-form'
             onSubmit={handleSubmit(onSubmit)}
             className='my-5 flex flex-col flex-wrap justify-end gap-4 rounded bg-stone-400/50 p-5 text-red-950 lg:flex-row lg:justify-between'
         >

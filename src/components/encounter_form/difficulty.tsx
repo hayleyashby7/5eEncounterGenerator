@@ -1,7 +1,7 @@
 import { DIFFICULTIES } from '../../types/difficulty.types';
-import { DefaultInputProps } from './encounter_form';
 import { ErrorMessage } from '@hookform/error-message';
-
+import { isDifficulty } from '../../types/difficulty.types';
+import { DefaultInputProps } from './encounter_form';
 const Difficulty = ({ errors, label, name, register, required }: DefaultInputProps) => {
     return (
         <>
@@ -12,9 +12,9 @@ const Difficulty = ({ errors, label, name, register, required }: DefaultInputPro
                 <select
                     id={name}
                     className='form-select solid rounded  border-2 border-neutral-900 bg-orange-100 px-2 py-1 outline-none'
-                    {...register(name, { required })}
+                    {...register(name, { required, validate: (value) => isDifficulty(value) || 'Select Difficulty' })}
                 >
-                    <option value=''>Select Difficulty</option>
+                    <option value='default'>Select Difficulty</option>
                     {Object.entries(DIFFICULTIES).map(([key, value]) => (
                         <option key={key} value={key}>
                             {value}
@@ -24,7 +24,7 @@ const Difficulty = ({ errors, label, name, register, required }: DefaultInputPro
             </div>
             <ErrorMessage
                 errors={errors}
-                name='characters'
+                name={name}
                 render={({ message }) => <p>{message}</p>}
             />
         </>

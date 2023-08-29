@@ -27,14 +27,14 @@ export const Input = ({
                     className='form-input solid rounded  border-2 border-neutral-900 bg-orange-100 px-2 py-1 outline-none'
                     {...register(name, {
                         required,
-                        min: { value: minValue, message: 'Min 1' },
-                        max: { value: maxValue, message: 'Max 20' },
+                        min: { value: minValue, message: `Min ${minValue}` },
+                        max: { value: maxValue, message: `Max ${maxValue}` },
                     })}
                 />
             </div>
             <ErrorMessage
                 errors={errors}
-                name='characters'
+                name={name}
                 render={({ message }) => <p>{message}</p>}
             />
         </>
