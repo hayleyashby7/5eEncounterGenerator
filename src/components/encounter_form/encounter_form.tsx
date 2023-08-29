@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { Path, UseFormRegister, SubmitHandler } from 'react-hook-form';
 import { EncounterFormData } from '../../types/encounter.types';
 import Input from './input';
@@ -10,7 +10,7 @@ export interface DefaultInputProps {
     register: UseFormRegister<EncounterFormData>;
     required: boolean;
     label: string;
-    errors?: any;
+    errors?: FieldErrors<EncounterFormData>;
 }
 
 interface EncounterFormProps {

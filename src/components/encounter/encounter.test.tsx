@@ -4,12 +4,13 @@ import Encounter from './encounter';
 import useEncounter from '../../hooks/useEncounter';
 import userEvent from '@testing-library/user-event';
 import { mockEncounterResponse } from '../../mocks/mockData';
+import { GeneratedEncounter } from '../../types/encounter.types';
 
 jest.mock('../../hooks/useEncounter');
 
 const MockEncounterSuggestions = jest.fn();
 
-jest.mock('../encounter_suggestions/encounter_suggestions', () => (props: any) => {
+jest.mock('../encounter_suggestions/encounter_suggestions', () => (props: GeneratedEncounter) => {
     MockEncounterSuggestions(props);
     return <MockEncounterSuggestions />;
 });

@@ -11,6 +11,6 @@ export enum DIFFICULTIES {
 
 export type Difficulties = (typeof DIFFICULTIES)[Difficulty];
 
-export const isDifficulty = (difficulty: any): difficulty is Difficulty => {
+export const isDifficulty = (difficulty: unknown): difficulty is Difficulty => {
     return DIFFICULTY.includes(difficulty as Difficulty);
 }
