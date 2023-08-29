@@ -1,4 +1,4 @@
-import { useEncounter } from '../../hooks/useEncounter';
+import  useEncounter from '../../hooks/useEncounter';
 import { GeneratedEncounter, EncounterFormData } from '../../types/encounter.types';
 import EncounterForm from '../encounter_form/encounter_form';
 import EncounterSuggestions from '../encounter_suggestions/encounter_suggestions';
@@ -12,8 +12,8 @@ export const Encounter: React.FC = () => {
         
         setEncounter(await useEncounter(data));
 
-        if (encounter?.monsters === null) {
-            setEncounterError('Not enough data to generate encounter.');
+        if (encounter === null) {
+            setEncounterError('No encounter generated.');
             return;
         }
     };
