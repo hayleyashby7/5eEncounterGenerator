@@ -17,4 +17,4 @@ describe("Header", () => {
         expect(headerElement).toBeInTheDocument();
         expect(headerElement).toHaveTextContent('Name');
     });
-    });
+});

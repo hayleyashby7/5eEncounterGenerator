@@ -1,8 +1,9 @@
+export interface HeaderType {
+    name: string;
+    important: boolean;
+}
 interface HeaderProps {
-    header: {
-        name: string;
-        important: boolean;
-    };
+    header: HeaderType;
 }
 
 export const Header: React.FC<HeaderProps> = ({ header }) => {
