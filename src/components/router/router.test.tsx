@@ -2,15 +2,6 @@ import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Router from './router';
 import { renderWithRouter } from '../../utils/test_utils';
-import '../../utils/constants';
-
-jest.mock('../../utils/constants', () => ({
-    API_KEY: 'test-api-key',
-}));
-
-afterAll(() => {
-    jest.clearAllMocks();
-});
 
 test('Router defaults to homepage', () => {
     //Arrange
