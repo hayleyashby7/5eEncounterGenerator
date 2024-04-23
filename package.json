@@ -9,7 +9,8 @@
         "deploy": "gh-pages -d dist",
         "dev": "vite --open",
         "build": "tsc && vite build",
-        "test": "jest ./src --verbose --coverage",
+        "test": "jest ./src",
+        "test-verbose": "jest ./src --verbose --coverage",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
     },
     "dependencies": {
@@ -37,6 +38,7 @@
         "@vitejs/plugin-react": "^4.0.3",
         "@vitejs/plugin-react-swc": "^3.3.2",
         "autoprefixer": "^10.4.14",
+        "browserslist-to-esbuild": "^2.1.1",
         "eslint": "^8.45.0",
         "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-react-hooks": "^4.6.0",
